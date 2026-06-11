@@ -48,7 +48,11 @@ def delete_feedback():
 
 while keep_application_running:
     # Register a Customer
+<<<<<<< HEAD
     should_register = input("Should I register you ? (Y/N) (D to delete feedback) (E to Exit)")
+=======
+    should_register = input("Should I register you ? (Y/N), display all feedbacks (D), or E to Exit: ")
+>>>>>>> main
 
     if should_register == 'Y' or should_register == 'y':
         keep_taking_feedbacks = True
@@ -75,7 +79,13 @@ while keep_application_running:
         print(customer_feedbacks)
         print("================")
     elif should_register == 'D' or should_register == 'd':
+<<<<<<< HEAD
         delete_feedback()
+=======
+        print("================")
+        print(customer_feedbacks)
+        print("================")
+>>>>>>> main
     
     # .lower() for a string (text), converts the text to lowercase
     elif should_register.lower() == "e":
