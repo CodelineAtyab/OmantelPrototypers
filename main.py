@@ -9,7 +9,7 @@ keep_taking_feedbacks = True
 
 while keep_application_running:
     # Register a Customer
-    should_register = input("Should I register you ? (Y/N) (E to Exit)")
+    should_register = input("Should I register you ? (Y/N), display all feedbacks (D), or E to Exit: ")
 
     if should_register == 'Y' or should_register == 'y':
         keep_taking_feedbacks = True
@@ -32,6 +32,10 @@ while keep_application_running:
                 customer_feedbacks[current_customer_uuid].append(feedback)
 
         # Output
+        print("================")
+        print(customer_feedbacks)
+        print("================")
+    elif should_register == 'D' or should_register == 'd':
         print("================")
         print(customer_feedbacks)
         print("================")
