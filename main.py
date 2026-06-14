@@ -10,8 +10,11 @@ def add_feedback_for_user(user_nick_name, feedback_msg, feedback_bucket):
     user_specific_list = feedback_bucket[user_nick_name]
     user_specific_list.append(feedback_msg)
 
-    # Output
-    return None
+
+def get_all_feedbacks_for_user(user_nick_name, feedback_bucket):
+    user_specific_list = feedback_bucket[user_nick_name]
+    return user_specific_list
+
 
 # Store dummy feedbacks for all 3 end users
 add_feedback_for_user("MR.X", "This is amazing!", feedback_store)
@@ -20,13 +23,8 @@ add_feedback_for_user("MR.Y", "Still too early to validate!", feedback_store)
 add_feedback_for_user("MR.Y", "Something is missing!", feedback_store)
 add_feedback_for_user("MR.Z", "Something is missing!", feedback_store)
 
-# Process
-get_feedback_for_user = "MR.Y"
-current_feedback_bucket: list[str] = feedback_store[get_feedback_for_user]
-for item in current_feedback_bucket:
-  print(item)
 
 
-
-# Output
+# Output (Provide Arguments to the function)
+print(get_all_feedbacks_for_user("MR.X", feedback_store))
 print("Exiting Application!")
