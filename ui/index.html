@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>LiteDesk</title>  
+  </head>
+  <body>
+    <h1>Anonymous Feedbacks are now Possible!!!</h1> 
+    <h2>Click <a href="https://www.google.com">here</a> to goto google</h2>
+
+    <input placeholder="Enter your feedback">
+    <button>Submit Feedback</button>
+    <ol id="lof">
+      <li>Feedback Item 1</li>
+      <li>Feedback Item 2</li>
+      <li>Feedback Item 3</li>
+    </ol>
+  </body>
+  <script>
+    function addListItem(feedbackContent) {
+      let newLi = document.createElement("li");
+      newLi.innerHTML = feedbackContent;
+
+      let olObj = document.getElementById("lof");
+      olObj.appendChild(newLi);
+    }
+
+    async function sendGetFeedbackRequest() {
+      const res = await fetch("http://localhost:8000/feedbacks?name=MR.A", {method: "GET"});
+      const resObj = await res.json();
+      
+      resObj.forEach((feedbackItem) => {
+        addListItem(feedbackItem);
+      });
+    }
+    sendGetFeedbackRequest();
+  </script>
+</html>
