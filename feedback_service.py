@@ -13,3 +13,7 @@ def get_all_feedbacks_for_user(user_nick_name, feedback_bucket):
     if user_nick_name in feedback_bucket:
         user_specific_list = feedback_bucket[user_nick_name]
     return user_specific_list
+
+
+def get_all_feedbacks(feedback_bucket):
+    return feedback_bucket
