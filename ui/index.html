@@ -7,11 +7,40 @@
     <h1>Anonymous Feedbacks are now Possible!!!</h1> 
     <h2>Be Honest and Provide your Feedback ...</h2>
     <p>
+      Please Give Your Feedback:
+    </p>
+    <input type="text" id="feedbackInput" placeholder="Type your feedback here...">
+    <button onclick="postFeedback()">POST</button>
+    <p>
       Following are all the feedbacks given by the entire team:
     </p>
     <ol id="lof"></ol>
   </body>
   <script>
+    // Function to create Feedback at the server side using POST request
+    function postFeedback() {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      const givenFeedback = document.getElementById("feedbackInput");
+      
+      const raw = JSON.stringify({
+        "feedback_msg": givenFeedback.value
+      });
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw
+      };
+
+      fetch(`${window.location.href}feedbacks`, requestOptions)
+        .then((response) => response.json())
+        .then((JSONResponse) => console.log(JSONResponse))
+        .catch((error) => console.error(error));
+    }
+
+    // Function to add a new feedback item to the list in the UI
     function addListItem(feedbackContent) {
       let newLi = document.createElement("li");
       newLi.innerHTML = feedbackContent;

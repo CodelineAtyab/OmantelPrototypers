@@ -29,7 +29,8 @@ def get_feedbacks():
 @app.post("/feedbacks")
 async def post_feedback(request: fastapi.Request):
     data = await request.json()
-    feedback_service.add_feedback_for_user(data["name"], data["feedback_msg"], feedback_store.store)
+    feedback_service.add_feedback_for_user("anonymous", data["feedback_msg"], feedback_store.store)
+    return {"status": "success"}
 
 
 if __name__ == "__main__":
