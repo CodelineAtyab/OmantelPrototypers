@@ -1,18 +1,15 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>LiteDesk</title>  
   </head>
   <body>
     <h1>Anonymous Feedbacks are now Possible!!!</h1> 
-    <h2>Click <a href="https://www.google.com">here</a> to goto google</h2>
-
-    <input placeholder="Enter your feedback">
-    <button>Submit Feedback</button>
-    <ol id="lof">
-      <li>Feedback Item 1</li>
-      <li>Feedback Item 2</li>
-      <li>Feedback Item 3</li>
-    </ol>
+    <h2>Be Honest and Provide your Feedback ...</h2>
+    <p>
+      Following are all the feedbacks given by the entire team:
+    </p>
+    <ol id="lof"></ol>
   </body>
   <script>
     function addListItem(feedbackContent) {
@@ -24,12 +21,18 @@
     }
 
     async function sendGetFeedbackRequest() {
-      const res = await fetch("http://localhost:8000/feedbacks?name=MR.A", {method: "GET"});
+      const res = await fetch(`${window.location.href}feedbacks`, {method: "GET"});
       const resObj = await res.json();
       
-      resObj.forEach((feedbackItem) => {
-        addListItem(feedbackItem);
-      });
+      // Process each USER as the username is the key coming from Python FastAPI
+      Object.keys(resObj).forEach(
+        (username) => {
+          console.log(username);
+          resObj[username].forEach((feedbackItem) => {
+            addListItem(feedbackItem);
+          })
+        }
+      )
     }
     sendGetFeedbackRequest();
   </script>
