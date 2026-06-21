@@ -1,9 +1,5 @@
 # From Asma
 
-## ClickUp Tickets
-- 86exwz2e2
-- 86exwj84y
-- 86exwj8qr
 
 ## CodingBat – Python Warmup-1
 
