@@ -7,7 +7,7 @@ def display_menu() -> None:
     print("2. Display All Feedbacks")
     print("3. Quit")
     print("4. Reboot")
-    print("5. Shutdown")
+
 
 
 def collect_feedback(feedback_store: list[str]) -> None:
@@ -64,11 +64,9 @@ def main() -> None:
         elif user_choice == "4":
             feedback_store = []
             print("Rebooting kiosk... feedback store cleared.")
-        elif user_choice == "5":
-            print("Shutting down kiosk...")
-            app_is_running = False
+        # Shutdown is same as Quit (option 3); option 5 removed
         else:
-            print("Please select either 1, 2, 3, 4 or 5")
+            print("Please select either 1, 2, 3 or 4")
 
     print("Exiting Application!!!")
 
