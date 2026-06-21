@@ -1,7 +1,17 @@
 [project]
+<<<<<<< HEAD
 name = "my-python-project"
+=======
+name = "omantelprototypers"
+>>>>>>> f75434432efc8b564f70cd67f36cc2f05c45ca2d
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
+<<<<<<< HEAD
 dependencies = []
+=======
+dependencies = [
+    "fastapi[all]>=0.137.0",
+]
+>>>>>>> f75434432efc8b564f70cd67f36cc2f05c45ca2d
