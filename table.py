@@ -1,2 +1,3 @@
 number = int(input("Enter a number: "))
-print(number)
+limit = int(input("Enter a limit: "))
+print(number, limit)
