@@ -1,6 +1,9 @@
-x = 1
-y = 3
-r = x + y
-
-print("I enjoy working with my team and the result is")
-print(result)
+number = int(input("Enter a number: "))
+limit = int(input("Enter a limit: "))
+ 
+current = 1
+while current <= limit:
+    result = number * current
+    print(f"{number} x {current} = {result}")
+    current = current + 1
+ 
