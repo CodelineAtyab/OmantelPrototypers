@@ -49,3 +49,9 @@ def monkey_trouble(a_smile, b_smile):
   ## Or this very short version (think about how this is the same as the above)
   ##   return (a_smile == b_smile)
 
+def sleep_in(weekday, vacation):
+  if not weekday or vacation:
+    return True
+  else:
+    return False
+  # This can be shortened to: return(not weekday or vacation
