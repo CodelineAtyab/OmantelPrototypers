@@ -1,4 +1,4 @@
-# From Asma
+# CodingBat
 
 
 ## CodingBat – Python Warmup-1
