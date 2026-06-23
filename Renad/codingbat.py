@@ -1,1 +1,0 @@
-# CodingBat solutions module
