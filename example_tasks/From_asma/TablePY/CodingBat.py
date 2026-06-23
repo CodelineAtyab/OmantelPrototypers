@@ -107,7 +107,6 @@ def count_xx(str):
             count += 1
     return count
 
-
 ### string_match(a, b)
 
 def string_match(a, b):

@@ -4,19 +4,20 @@
 ## CodingBat – Python Warmup-1
 
 ### sleep_in(weekday, vacation)
-```python
+
 def sleep_in(weekday, vacation):
     return (not weekday) or vacation
 ```
 
+
 ### monkey_trouble(a_smile, b_smile)
-```python
+
 def monkey_trouble(a_smile, b_smile):
     return a_smile == b_smile
 ```
 
 ### sum_double(a, b)
-```python
+
 def sum_double(a, b):
     total = a + b
     return total * 2 if a == b else total
