@@ -1,16 +1,82 @@
 def decode_measurements(encoded_string: str) -> list[int]:
-  """This function decodes an encoded string into a list of integers.
-  RULE 1: A generic logic should be implemented without handling edge cases using if statements for specific inputs.
-  RULE 2: The generic logic should handle all inputs and generate the expected outputs.
+    """This function decodes an encoded string into a list of integers."""
+    results = []
+    i = 0
+    n = len(encoded_string)
 
-  Args:
-      encoded_string (str): The encoded string to decode.
+    def read_value_token():
+        nonlocal i
+        if i >= n or encoded_string[i] == ' ':
+            return None
+        c = encoded_string[i]
+        if c == '_':
+            i += 1
+            return 0
+        val = 0
+        while i < n:
+            ch = encoded_string[i]
+            if ch == 'z':
+                val += 26
+                i += 1
+            elif ch == '_':
+                i += 1
+                return val
+            elif ch == ' ':
+                return val
+            else:
+                val += ord(ch) - ord('a') + 1
+                i += 1
+                return val
+        return val
 
-  Returns:
-      list[int]: The list of decoded integers.
-  """
-  pass # Remove this pass and place your logic here to decode the string into a list of integers based on the specified encoding rules.
-  return []  # Placeholder return statement; replace with actual decoding logic.
+    while i < n:
+        c = encoded_string[i]
+
+        if c == ' ':
+            i += 1
+            continue
+
+        if c == '_':
+            while i < n and encoded_string[i] != ' ':
+                i += 1
+            results.append(0)
+            continue
+
+        count = 0
+        zero_cycle = False
+        while i < n:
+            ch = encoded_string[i]
+            if ch == ' ':
+                break
+            if ch == '_':
+                while i < n and encoded_string[i] != ' ':
+                    i += 1
+                results.append(0)
+                zero_cycle = True
+                break
+            if ch == 'z':
+                count += 26
+                i += 1
+            else:
+                count += ord(ch) - ord('a') + 1
+                i += 1
+                break
+
+        if zero_cycle:
+            continue
+
+        total = 0
+        for _ in range(count):
+            if i >= n or encoded_string[i] == ' ':
+                break
+            val = read_value_token()
+            if val is None:
+                break
+            total += val
+
+        results.append(total)
+
+    return results
 
 
 if __name__ == "__main__":
