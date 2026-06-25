@@ -9,8 +9,43 @@ def decode_measurements(encoded_string: str) -> list[int]:
   Returns:
       list[int]: The list of decoded integers.
   """
-  pass # Remove this pass and place your logic here to decode the string into a list of integers based on the specified encoding rules.
-  return []  # Placeholder return statement; replace with actual decoding logic.
+  # A "number" is z-accumulated: each 'z' adds 26 and the run continues; the
+  # first non-'z' char adds its value (a..z -> 1..26, anything else -> 0) and
+  # ends the number. Returns (value, next_position).
+  def read_number(s, pos):
+    total = 0
+    while pos < len(s) and s[pos] == "z":
+      total += 26
+      pos += 1
+    if pos < len(s):
+      ch = s[pos]
+      total += ord(ch) - ord("a") + 1 if "a" <= ch <= "z" else 0
+      pos += 1
+    return total, pos
+
+  # Decode one space-free package: read a count, then sum that many numbers.
+  def decode_package(s):
+    values = []
+    pos = 0
+    while pos < len(s):
+      count, pos = read_number(s, pos)
+      if count == 0:            # undefined char in count position -> emit 0, stop
+        values.append(0)
+        break
+      value = 0
+      for _ in range(count):
+        if pos >= len(s):
+          break
+        num, pos = read_number(s, pos)
+        value += num
+      values.append(value)
+    return values
+
+  # A space separates independent packages; concatenate their results.
+  result = []
+  for package in encoded_string.split(" "):
+    result.extend(decode_package(package))
+  return result
 
 
 if __name__ == "__main__":
