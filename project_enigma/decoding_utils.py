@@ -1,5 +1,6 @@
+    
 def decode_measurements(encoded_string: str) -> list[int]:
-  """This function decodes an encoded string into a list of integers.
+ """This function decodes an encoded string into a list of integers.
   RULE 1: A generic logic should be implemented without handling edge cases using if statements for specific inputs.
   RULE 2: The generic logic should handle all inputs and generate the expected outputs.
 
@@ -9,8 +10,10 @@ def decode_measurements(encoded_string: str) -> list[int]:
   Returns:
       list[int]: The list of decoded integers.
   """
-  pass # Remove this pass and place your logic here to decode the string into a list of integers based on the specified encoding rules.
-  return []  # Placeholder return statement; replace with actual decoding logic.
+ pass # Remove this pass and place your logic here to decode the string into a list of integers based on the specified encoding rules.
+ return []  # Placeholder return statement; replace with actual decoding logic.
+
+
 
 
 if __name__ == "__main__":
