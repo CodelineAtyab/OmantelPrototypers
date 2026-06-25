@@ -1,16 +1,62 @@
 def decode_measurements(encoded_string: str) -> list[int]:
-  """This function decodes an encoded string into a list of integers.
-  RULE 1: A generic logic should be implemented without handling edge cases using if statements for specific inputs.
-  RULE 2: The generic logic should handle all inputs and generate the expected outputs.
+    """Decodes an encoded string into a list of integers.
 
-  Args:
-      encoded_string (str): The encoded string to decode.
+    Format per package (space-separated):
+      - Read count: z-encoded (accumulate 26 per 'z', stop at first non-z)
+        - If the terminating char is '_': output 0 and stop processing this package
+        - Otherwise count = accumulated_z_total + char_value (a=1..y=25)
+      - Sum 'count' z-encoded values into one output integer
+        ('_' terminates a z-sequence contributing 0 to the sum)
+      - Repeat until end of package
+    Spaces separate independent packages.
+    """
+    result = []
 
-  Returns:
-      list[int]: The list of decoded integers.
-  """
-  pass # Remove this pass and place your logic here to decode the string into a list of integers based on the specified encoding rules.
-  return []  # Placeholder return statement; replace with actual decoding logic.
+    if encoded_string == "":
+        return []
+
+    for package in encoded_string.split(" "):
+        i = 0
+        while i < len(package):
+            # --- Read count (z-encoded) ---
+            count = 0
+            while i < len(package) and package[i] == 'z':
+                count += 26
+                i += 1
+
+            if i >= len(package):
+                break
+
+            ch = package[i]
+            i += 1
+
+            if ch == '_':
+                # '_' at count position = output 0 and stop this package
+                result.append(0)
+                break
+
+            count += ord(ch) - 96
+
+            # --- Read 'count' z-encoded values and sum them into one output ---
+            total = 0
+            for _ in range(count):
+                if i >= len(package):
+                    break
+                val = 0
+                while i < len(package) and package[i] == 'z':
+                    val += 26
+                    i += 1
+                if i < len(package):
+                    ch = package[i]
+                    i += 1
+                    if ch != '_':
+                        val += ord(ch) - 96
+                    # '_' contributes 0 and terminates the z-sequence
+                total += val
+
+            result.append(total)
+
+    return result
 
 
 if __name__ == "__main__":
