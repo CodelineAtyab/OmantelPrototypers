@@ -2,6 +2,7 @@ def decode_measurements(encoded_string: str) -> list[int]:
   """This function decodes an encoded string into a list of integers.
   RULE 1: A generic logic should be implemented without handling edge cases using if statements for specific inputs.
   RULE 2: The generic logic should handle all inputs and generate the expected outputs.
+  ..
 
   Args:
       encoded_string (str): The encoded string to decode.
