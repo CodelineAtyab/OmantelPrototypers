@@ -9,7 +9,6 @@ def decode_measurements(encoded_string: str) -> list[int]:
   Returns:
       list[int]: The list of decoded integers.
   """
-  pass # Remove this pass and place your logic here to decode the string into a list of integers based on the specified encoding rules.
   if encoded_string == "":
     return []
 
@@ -78,7 +77,6 @@ def decode_measurements(encoded_string: str) -> list[int]:
     results.append(cycle_total)
 
   return results
-  return []  # Placeholder return statement; replace with actual decoding logic.
 
 
 if __name__ == "__main__":
