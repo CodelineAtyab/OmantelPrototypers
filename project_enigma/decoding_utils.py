@@ -1,16 +1,46 @@
 def decode_measurements(encoded_string: str) -> list[int]:
-  """This function decodes an encoded string into a list of integers.
-  RULE 1: A generic logic should be implemented without handling edge cases using if statements for specific inputs.
-  RULE 2: The generic logic should handle all inputs and generate the expected outputs.
+    """This function decodes an encoded string into a list of integers.
+    RULE 1: A generic logic should be implemented without handling edge cases using if statements for specific inputs.
+    RULE 2: The generic logic should handle all inputs and generate the expected outputs.
 
-  Args:
-      encoded_string (str): The encoded string to decode.
+    Args:
+        encoded_string (str): The encoded string to decode.
 
-  Returns:
-      list[int]: The list of decoded integers.
-  """
-  pass # Remove this pass and place your logic here to decode the string into a list of integers based on the specified encoding rules.
-  return []  # Placeholder return statement; replace with actual decoding logic.
+    Returns:
+        list[int]: The list of decoded integers.
+    """
+    result = []
+
+    for package in encoded_string.split(' '):
+        # Step 1: parse package into a flat list of numbers
+        flat = []
+        i = 0
+        n = len(package)
+        while i < n:
+            total = 0
+            while i < n:
+                ch = package[i]; i += 1
+                if ch == 'z':
+                    total += 26        # continuation: keep reading
+                elif ch == '_':
+                    break              # terminates with value 0
+                else:                  # 'a' to 'y'
+                    total += ord(ch) - ord('a') + 1
+                    break              # terminates with value 1–25
+            flat.append(total)
+
+        # Step 2: walk flat list — each number is a COUNT, sum the next COUNT values
+        # When COUNT = 0, output 0 and stop processing this package
+        j = 0
+        while j < len(flat):
+            count = flat[j]; j += 1
+            group_sum = sum(flat[j + k] for k in range(count) if j + k < len(flat))
+            j += count
+            result.append(group_sum)
+            if count == 0:
+                break  # empty cycle: discard rest of package
+
+    return result
 
 
 if __name__ == "__main__":
